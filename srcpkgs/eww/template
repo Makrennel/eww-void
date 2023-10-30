@@ -1,0 +1,50 @@
+# Template file for 'eww'
+pkgname=eww
+version=0.4.0.r47.ga9a35c1
+revision=1
+commit_hash=a9a35c1804d72ef92e04ee71555bd9e5a08fa17e
+main_short_desc="Custom widgets system for any window manager"
+short_desc="${main_short_desc} - Dummy Package"
+hostmakedepends="rustup pkg-config glibc"
+makedepends="atk-devel pango-devel gdk-pixbuf-devel gtk-layer-shell-devel gtk+3-devel"
+depends="gtk-layer-shell gtk+3"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="MIT"
+homepage="https://github.com/elkowar/eww"
+distfiles="${homepage}/archive/${commit_hash}.tar.gz"
+checksum=a7b47eb121d54a7899d273c01789838f2b8d296cd7af7b345fc900fc19a5c9be
+
+do_build() {
+	# We need rust nightly
+	export RUSTUP_HOME=${wrksrc}/rustup
+	rustup-init --default-toolchain nightly -y
+	export PATH=${RUSTUP_HOME}/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
+
+	# Build wayland version
+	cargo build --release --package eww --no-default-features --features wayland --target-dir waylandtarget
+
+	# Build x11 version
+	cargo build --release --package eww --no-default-features --features x11 --target-dir x11target
+}
+
+do_install() {
+	vlicense LICENSE
+}
+
+eww-wayland_package() {
+	short_desc="${main_short_desc} - Wayland Package"
+	depends="${sourcepkg}>=${version}_${revision}"
+	conflicts="eww-x11"
+	pkg_install() {
+		vbin waylandtarget/release/eww
+	}
+}
+
+eww-x11_package() {
+	short_desc="${main_short_desc} - X11 Package"
+	depends="${sourcepkg}>=${version}_${revision}"
+	conflicts="eww-wayland"
+	pkg_install() {
+		vbin x11target/release/eww
+	}
+}
