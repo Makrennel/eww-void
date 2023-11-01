@@ -1,8 +1,7 @@
 # Template file for 'eww'
 pkgname=eww
-version=0.4.0.r47.ga9a35c1
-revision=1
-commit_hash=a9a35c1804d72ef92e04ee71555bd9e5a08fa17e
+version=0.4
+revision=0
 main_short_desc="Custom widgets system for any window manager"
 short_desc="${main_short_desc} - Dummy Package"
 hostmakedepends="rustup pkg-config glibc"
@@ -11,8 +10,8 @@ depends="gtk-layer-shell gtk+3"
 maintainer="Makrennel <makrommel@protonmail.ch>"
 license="MIT"
 homepage="https://github.com/elkowar/eww"
-distfiles="${homepage}/archive/${commit_hash}.tar.gz"
-checksum=a7b47eb121d54a7899d273c01789838f2b8d296cd7af7b345fc900fc19a5c9be
+distfiles="${homepage}/archive/refs/tags/v${version}.${revision}.tar.gz"
+checksum=67f1dfdf856168d4b0e731acdd9e7bed034c09480ce2264f857d7e48f576fc8a
 
 do_build() {
 	# We need rust nightly
