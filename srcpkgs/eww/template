@@ -18,7 +18,7 @@ do_build() {
 	# We need rust nightly
 	export RUSTUP_HOME=${wrksrc}/rustup
 	rustup-init --default-toolchain nightly -y
-	export PATH=${RUSTUP_HOME}/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
+	export PATH=${RUSTUP_HOME}/toolchains/nightly-${XBPS_RUST_TARGET}/bin:$PATH
 
 	# Build wayland version
 	cargo build --release --package eww --no-default-features --features wayland --target-dir waylandtarget
