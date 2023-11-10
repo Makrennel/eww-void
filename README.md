@@ -33,12 +33,12 @@ $ cd eww-void
 $ cp -r srcpkgs/* ../void-packages/srcpkgs
 ```
 
-5) Build and install `eww-wayland` or `eww-x11`
+5) Build and install eww
 
 ```
 cd ../void-packages
 $ ./xbps-src pkg eww
-$ sudo xbps-install -R hostdir/binpkgs eww-wayland
+$ sudo xbps-install -R hostdir/binpkgs eww
 ```
 
-Note: The `eww` package does not contain the binary.
+Note: The `eww` package contains the binaries for both the wayland and x11 versions, which must be run as `eww-wayland` or `eww-x11`.
