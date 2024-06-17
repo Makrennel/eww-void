@@ -1,3 +1,12 @@
+## NO LONGER MAINTAINED
+
+This repository is no longer maintained, eww has been added to Void Linux's repositories so this is no longer needed.
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+
 ## Elkowars Wacky Widgets (EWW) for Void Linux
 
 This repository contains template files for building [eww](https://github.com/elkowar/eww) using xbps-src.
